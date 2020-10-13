@@ -1,0 +1,17 @@
+Program
+----AssignmentExpression
+--------Operator: =
+--------Lhs
+------------Identifier: x
+--------Rhs
+------------ObjectLiteral
+----------------PropertyAssignment
+--------------------PropertyName
+------------------------Identifier: x
+--------------------LiteralExpression
+------------------------1
+----------------PropertyAssignment
+--------------------PropertyName
+------------------------Identifier: x
+--------------------LiteralExpression
+------------------------2

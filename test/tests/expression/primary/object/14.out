@@ -1,0 +1,13 @@
+Program
+----ObjectLiteral
+--------PropertyGetter
+------------Getter
+----------------Identifier: get
+----------------PropertyName
+--------------------Identifier: i
+------------FunctionBody
+--------PropertyAssignment
+------------PropertyName
+----------------Identifier: i
+------------LiteralExpression
+----------------42

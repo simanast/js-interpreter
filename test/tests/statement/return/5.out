@@ -1,0 +1,9 @@
+Program
+----FunctionDeclaration
+--------Identifier: a
+--------FunctionBody
+------------ReturnStatement
+----------------LiteralExpression
+--------------------`
+  	test
+  `

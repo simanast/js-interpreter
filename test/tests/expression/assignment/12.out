@@ -1,0 +1,9 @@
+Program
+----AssignmentOperatorExpression
+--------AssignmentOperator
+------------BitXorAssign: ^=
+--------Lhs
+------------Identifier: x
+--------Rhs
+------------LiteralExpression
+----------------42

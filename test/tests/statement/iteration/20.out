@@ -1,0 +1,8 @@
+Program
+----ForInStatement:
+--------Left
+------------Identifier: a
+--------Right
+------------Identifier: a
+--------Body
+------------EmptyStatement

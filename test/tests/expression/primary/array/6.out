@@ -1,0 +1,13 @@
+Program
+----AssignmentExpression
+--------Operator: =
+--------Lhs
+------------Identifier: x
+--------Rhs
+------------ArrayLiteral
+----------------LiteralExpression
+--------------------1
+----------------LiteralExpression
+--------------------2
+----------------LiteralExpression
+--------------------3

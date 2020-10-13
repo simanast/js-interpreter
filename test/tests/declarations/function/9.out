@@ -1,0 +1,9 @@
+Program
+----VariableDeclarationList
+--------VarModifier: var
+--------VariableDeclaration
+------------Identifier: hi
+------------AnoymousFunctionDecl
+----------------FunctionBody
+--------------------Identifier: sayHi
+--------------------Arguments

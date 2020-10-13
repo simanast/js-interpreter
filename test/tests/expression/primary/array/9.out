@@ -1,0 +1,7 @@
+Program
+----VariableDeclarationList
+--------VarModifier: var
+--------VariableDeclaration
+------------Identifier: source
+------------LiteralExpression
+----------------'T\u200C = []'

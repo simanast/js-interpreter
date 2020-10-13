@@ -1,0 +1,11 @@
+Program
+----ForStatement
+--------Init
+------------VariableDeclarationList
+----------------VarModifier: var
+----------------VariableDeclaration
+--------------------Identifier: x
+--------------------LiteralExpression
+------------------------0
+--------Body
+------------EmptyStatement

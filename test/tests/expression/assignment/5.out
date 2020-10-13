@@ -1,0 +1,9 @@
+Program
+----AssignmentOperatorExpression
+--------AssignmentOperator
+------------ModulusAssign: %=
+--------Lhs
+------------Identifier: x
+--------Rhs
+------------LiteralExpression
+----------------42

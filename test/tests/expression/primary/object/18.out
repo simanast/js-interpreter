@@ -1,0 +1,7 @@
+Program
+----ObjectLiteral
+--------PropertyAssignment
+------------PropertyName
+----------------"["
+------------LiteralExpression
+----------------42

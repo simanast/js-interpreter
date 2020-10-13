@@ -1,0 +1,21 @@
+Program
+----AssignmentExpression
+--------Operator: =
+--------Lhs
+------------Identifier: x
+--------Rhs
+------------ObjectLiteral
+----------------PropertySetter
+--------------------Setter
+------------------------Identifier: set
+------------------------PropertyName
+----------------------------Identifier: width
+--------------------FormalParameterArg
+------------------------Identifier: w
+--------------------FunctionBody
+------------------------AssignmentExpression
+----------------------------Operator: =
+----------------------------Lhs
+--------------------------------Identifier: m_width
+----------------------------Rhs
+--------------------------------Identifier: w

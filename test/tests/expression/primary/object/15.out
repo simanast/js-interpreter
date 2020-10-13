@@ -1,0 +1,20 @@
+Program
+----LiteralExpression
+--------"use strict"
+----VariableDeclarationList
+--------VarModifier: var
+--------VariableDeclaration
+------------Identifier: x
+------------ObjectLiteral
+----------------PropertyGetter
+--------------------Getter
+------------------------Identifier: get
+------------------------PropertyName
+----------------------------Identifier: i
+--------------------FunctionBody
+----------------PropertyGetter
+--------------------Getter
+------------------------Identifier: get
+------------------------PropertyName
+----------------------------Identifier: i
+--------------------FunctionBody

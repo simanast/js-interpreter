@@ -1,0 +1,9 @@
+Program
+----AssignmentOperatorExpression
+--------AssignmentOperator
+------------DivideAssign: /=
+--------Lhs
+------------Identifier: x
+--------Rhs
+------------LiteralExpression
+----------------42

@@ -1,0 +1,10 @@
+Program
+----IfStatement
+--------Test
+------------LiteralExpression
+----------------true
+--------Consequent
+------------Identifier: that
+------------Arguments
+--------Alternate
+------------EmptyStatement

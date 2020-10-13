@@ -1,0 +1,11 @@
+Program
+----FunctionDeclaration
+--------Identifier: hello
+--------ParameterList
+------------FormalParameterArg
+----------------Identifier: a
+------------FormalParameterArg
+----------------Identifier: b
+--------FunctionBody
+------------Identifier: sayHi
+------------Arguments

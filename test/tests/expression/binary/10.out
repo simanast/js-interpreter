@@ -1,0 +1,12 @@
+Program
+----MultiplicativeExpression
+--------Operator: *
+--------Lhs
+------------MultiplicativeExpression
+----------------Operator: %
+----------------Lhs
+--------------------Identifier: x
+----------------Rhs
+--------------------Identifier: y
+--------Rhs
+------------Identifier: z

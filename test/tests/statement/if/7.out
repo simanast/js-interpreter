@@ -1,0 +1,22 @@
+Program
+----IfStatement
+--------Test
+------------LiteralExpression
+----------------true
+--------Consequent
+------------ForStatement
+----------------Init
+--------------------LiteralExpression
+------------------------1
+----------------Body
+--------------------LiteralExpression
+------------------------1
+--------Alternate
+------------ForOfStatement
+----------------Left
+--------------------Identifier: x
+----------------Right
+--------------------Identifier: y
+----------------Body
+--------------------LiteralExpression
+------------------------2

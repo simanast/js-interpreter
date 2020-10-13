@@ -1,0 +1,11 @@
+Program
+----IfStatement
+--------Test
+------------Identifier: morning
+--------Consequent
+------------VariableDeclarationList
+----------------VarModifier: var
+----------------VariableDeclaration
+--------------------Identifier: x
+--------------------LiteralExpression
+------------------------0

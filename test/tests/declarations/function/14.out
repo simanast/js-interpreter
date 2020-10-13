@@ -1,0 +1,7 @@
+Program
+----FunctionDeclaration
+--------Identifier: universe
+--------ParameterList
+------------FormalParameterArg
+----------------Identifier: __proto__
+--------FunctionBody

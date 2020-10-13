@@ -1,0 +1,8 @@
+Program
+----FunctionDeclaration
+--------Identifier: a
+--------FunctionBody
+------------ReturnStatement
+----------------LiteralExpression
+--------------------'hello \
+  	world'

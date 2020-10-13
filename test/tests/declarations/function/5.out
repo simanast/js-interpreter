@@ -1,0 +1,9 @@
+Program
+----FunctionDeclaration
+--------Identifier: test
+--------ParameterList
+------------FormalParameterArg
+----------------Identifier: t
+------------FormalParameterArg
+----------------Identifier: t
+--------FunctionBody

@@ -1,0 +1,15 @@
+Program
+----AdditiveExpression
+--------Operator: +
+--------Lhs
+------------AdditiveExpression
+----------------Operator: +
+----------------Lhs
+--------------------LiteralExpression
+------------------------1
+----------------Rhs
+--------------------LiteralExpression
+------------------------2
+--------Rhs
+------------LiteralExpression
+----------------3

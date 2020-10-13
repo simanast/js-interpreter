@@ -1,0 +1,10 @@
+Program
+----ForStatement
+--------Init
+------------VariableDeclarationList
+----------------VarModifier: let
+----------------VariableDeclaration
+--------------------Identifier: x
+--------------------Identifier: None
+--------Body
+------------Block

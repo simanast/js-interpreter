@@ -1,0 +1,9 @@
+Program
+----AdditiveExpression
+--------Operator: +
+--------Lhs
+------------LiteralExpression
+----------------'\
+'
+--------Rhs
+------------Identifier: bar

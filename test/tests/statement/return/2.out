@@ -1,0 +1,5 @@
+Program
+----AnoymousFunctionDecl
+--------FunctionBody
+------------ReturnStatement
+----------------Identifier: x

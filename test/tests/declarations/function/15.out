@@ -1,0 +1,12 @@
+Program
+----FunctionDeclaration
+--------Identifier: test
+--------FunctionBody
+------------AdditiveExpression
+----------------Operator: +
+----------------Lhs
+--------------------LiteralExpression
+------------------------"use strict"
+----------------Rhs
+--------------------LiteralExpression
+------------------------42

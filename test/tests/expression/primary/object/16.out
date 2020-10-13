@@ -1,0 +1,21 @@
+Program
+----LiteralExpression
+--------"use strict"
+----VariableDeclarationList
+--------VarModifier: var
+--------VariableDeclaration
+------------Identifier: x
+------------ObjectLiteral
+----------------PropertySetter
+--------------------Setter
+------------------------Identifier: set
+------------------------PropertyName
+----------------------------Identifier: i
+--------------------FormalParameterArg
+------------------------Identifier: x
+--------------------FunctionBody
+----------------PropertyAssignment
+--------------------PropertyName
+------------------------Identifier: i
+--------------------LiteralExpression
+------------------------42

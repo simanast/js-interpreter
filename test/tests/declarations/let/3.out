@@ -1,0 +1,16 @@
+Program
+----Block
+--------VariableDeclarationList
+------------VarModifier: let
+------------VariableDeclaration
+----------------Identifier: x
+----------------LiteralExpression
+--------------------14
+------------VariableDeclaration
+----------------Identifier: y
+----------------LiteralExpression
+--------------------3
+------------VariableDeclaration
+----------------Identifier: z
+----------------LiteralExpression
+--------------------1977

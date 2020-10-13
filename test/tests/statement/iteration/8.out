@@ -1,0 +1,18 @@
+Program
+----WhileStatement
+--------Test
+------------RelationalExpression
+----------------Operator: <
+----------------Lhs
+--------------------Identifier: x
+----------------Rhs
+--------------------LiteralExpression
+------------------------10
+--------Body
+------------Block
+----------------PostIncrementExpression
+--------------------Operator: ++
+--------------------Identifier: x
+----------------PostDecreaseExpression
+--------------------Operator: --
+--------------------Identifier: y

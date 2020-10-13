@@ -1,0 +1,9 @@
+Program
+----AdditiveExpression
+--------Operator: +
+--------Lhs
+------------LiteralExpression
+----------------"use strict"
+--------Rhs
+------------LiteralExpression
+----------------42

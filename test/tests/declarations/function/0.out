@@ -1,0 +1,11 @@
+Program
+----FunctionDeclaration
+--------Identifier: a
+--------ParameterList
+------------FormalParameterArg
+----------------Identifier: x
+------------FormalParameterArg
+----------------Identifier: x
+--------FunctionBody
+------------LiteralExpression
+----------------'use strict'

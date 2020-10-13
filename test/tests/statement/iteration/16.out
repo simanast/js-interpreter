@@ -1,0 +1,13 @@
+Program
+----ForInStatement:
+--------Left
+------------VariableDeclarationList
+----------------VarModifier: var
+----------------VariableDeclaration
+--------------------Identifier: x
+--------Right
+------------Identifier: list
+--------Body
+------------Identifier: process
+------------Arguments
+----------------Identifier: x

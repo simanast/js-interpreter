@@ -1,0 +1,15 @@
+Program
+----TernaryExpression
+--------Test
+------------LogicalAndExpression
+----------------Operator: &&
+----------------Lhs
+--------------------Identifier: x
+----------------Rhs
+--------------------Identifier: y
+--------Consequent
+------------LiteralExpression
+----------------1
+--------Alternate
+------------LiteralExpression
+----------------2

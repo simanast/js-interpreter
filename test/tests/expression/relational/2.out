@@ -1,0 +1,12 @@
+Program
+----RelationalExpression
+--------Operator: <
+--------Lhs
+------------RelationalExpression
+----------------Operator: <
+----------------Lhs
+--------------------Identifier: x
+----------------Rhs
+--------------------Identifier: y
+--------Rhs
+------------Identifier: z

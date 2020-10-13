@@ -1,0 +1,8 @@
+Program
+----WhileStatement
+--------Test
+------------LiteralExpression
+----------------true
+--------Body
+------------Identifier: doSomething
+------------Arguments

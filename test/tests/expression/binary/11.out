@@ -1,0 +1,12 @@
+Program
+----BitShiftExpression
+--------Operator: <<
+--------Lhs
+------------BitShiftExpression
+----------------Operator: <<
+----------------Lhs
+--------------------Identifier: x
+----------------Rhs
+--------------------Identifier: y
+--------Rhs
+------------Identifier: z

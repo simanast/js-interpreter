@@ -1,0 +1,16 @@
+Program
+----AssignmentExpression
+--------Operator: =
+--------Lhs
+------------Identifier: x
+--------Rhs
+------------TernaryExpression
+----------------Test
+--------------------LiteralExpression
+------------------------0
+----------------Consequent
+--------------------LiteralExpression
+------------------------1
+----------------Alternate
+--------------------LiteralExpression
+------------------------2

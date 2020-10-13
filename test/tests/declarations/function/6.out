@@ -1,0 +1,9 @@
+Program
+----FunctionDeclaration
+--------Identifier: eval
+--------FunctionBody
+------------FunctionDeclaration
+----------------Identifier: inner
+----------------FunctionBody
+--------------------LiteralExpression
+------------------------"use strict"

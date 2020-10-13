@@ -1,0 +1,10 @@
+Program
+----AnoymousFunctionDecl
+--------FunctionBody
+------------ReturnStatement
+----------------MultiplicativeExpression
+--------------------Operator: *
+--------------------Lhs
+------------------------Identifier: x
+--------------------Rhs
+------------------------Identifier: y

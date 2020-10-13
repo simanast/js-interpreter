@@ -1,0 +1,12 @@
+Program
+----AdditiveExpression
+--------Operator: +
+--------Lhs
+------------AdditiveExpression
+----------------Operator: -
+----------------Lhs
+--------------------Identifier: x
+----------------Rhs
+--------------------Identifier: y
+--------Rhs
+------------Identifier: z

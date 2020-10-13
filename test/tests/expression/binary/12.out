@@ -1,0 +1,12 @@
+Program
+----BitOrExpression
+--------Operator: |
+--------Lhs
+------------BitOrExpression
+----------------Operator: |
+----------------Lhs
+--------------------Identifier: x
+----------------Rhs
+--------------------Identifier: y
+--------Rhs
+------------Identifier: z

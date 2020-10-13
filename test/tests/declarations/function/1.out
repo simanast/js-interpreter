@@ -1,0 +1,6 @@
+Program
+----FunctionDeclaration
+--------Identifier: hello
+--------FunctionBody
+------------Identifier: sayHi
+------------Arguments

@@ -1,0 +1,12 @@
+Program
+----ForStatement
+--------Init
+------------AssignmentExpression
+----------------Operator: =
+----------------Lhs
+--------------------Identifier: x
+----------------Rhs
+--------------------LiteralExpression
+------------------------0
+--------Body
+------------EmptyStatement

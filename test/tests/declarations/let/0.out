@@ -1,0 +1,5 @@
+Program
+----VariableDeclarationList
+--------VarModifier: let
+--------VariableDeclaration
+------------Identifier: x

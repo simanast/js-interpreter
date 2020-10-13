@@ -1,0 +1,8 @@
+Program
+----ForStatement
+--------Init
+------------Identifier: a
+------------Identifier: b
+------------Identifier: c
+--------Body
+------------EmptyStatement

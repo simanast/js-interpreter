@@ -1,0 +1,8 @@
+Program
+----Block
+--------VariableDeclarationList
+------------VarModifier: const
+------------VariableDeclaration
+----------------Identifier: x
+----------------LiteralExpression
+--------------------42

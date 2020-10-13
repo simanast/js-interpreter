@@ -1,0 +1,12 @@
+Program
+----ObjectLiteral
+--------PropertySetter
+------------Setter
+----------------Identifier: set
+----------------PropertyName
+--------------------Identifier: x
+------------FormalParameterArg
+----------------Identifier: a
+----------------LiteralExpression
+--------------------0
+------------FunctionBody

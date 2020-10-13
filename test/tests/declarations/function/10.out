@@ -1,0 +1,8 @@
+Program
+----VariableDeclarationList
+--------VarModifier: var
+--------VariableDeclaration
+------------Identifier: hi
+------------FunctionDeclaration
+----------------Identifier: eval
+----------------FunctionBody

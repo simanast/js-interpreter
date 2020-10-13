@@ -1,0 +1,8 @@
+Program
+----AssignmentExpression
+--------Operator: =
+--------Lhs
+------------Identifier: arguments
+--------Rhs
+------------LiteralExpression
+----------------42

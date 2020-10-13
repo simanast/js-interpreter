@@ -1,0 +1,17 @@
+Program
+----ForInStatement:
+--------Left
+------------Identifier: a
+------------Arguments
+----------------InExpression
+--------------------Operator: in
+--------------------Lhs
+------------------------Identifier: b
+--------------------Rhs
+------------------------Identifier: c
+------------LiteralExpression
+----------------0
+--------Right
+------------Identifier: d
+--------Body
+------------EmptyStatement

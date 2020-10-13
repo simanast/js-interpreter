@@ -1,0 +1,4 @@
+Program
+----BitNotExpression
+--------Operator: ~
+--------Identifier: x

@@ -1,0 +1,15 @@
+Program
+----BitShiftExpression
+--------Operator: <<
+--------Lhs
+------------AdditiveExpression
+----------------Operator: +
+----------------Lhs
+--------------------LiteralExpression
+------------------------4
+----------------Rhs
+--------------------LiteralExpression
+------------------------5
+--------Rhs
+------------LiteralExpression
+----------------6

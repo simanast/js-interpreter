@@ -1,0 +1,10 @@
+Program
+----ForInStatement:
+--------Left
+------------Identifier: x
+--------Right
+------------Identifier: list
+--------Body
+------------Identifier: process
+------------Arguments
+----------------Identifier: x

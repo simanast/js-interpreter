@@ -1,0 +1,30 @@
+Program
+----ForStatement
+--------Init
+------------AssignmentExpression
+----------------Operator: =
+----------------Lhs
+--------------------Identifier: x
+----------------Rhs
+--------------------LiteralExpression
+------------------------0
+--------Test
+------------RelationalExpression
+----------------Operator: <
+----------------Lhs
+--------------------Identifier: x
+----------------Rhs
+--------------------LiteralExpression
+------------------------42
+--------Update
+------------RelationalExpression
+----------------Operator: <
+----------------Lhs
+--------------------Identifier: x
+----------------Rhs
+--------------------LiteralExpression
+------------------------42
+--------Body
+------------Identifier: process
+------------Arguments
+----------------Identifier: x

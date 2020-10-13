@@ -1,0 +1,8 @@
+Program
+----IfStatement
+--------Test
+------------Identifier: morning
+--------Consequent
+------------FunctionDeclaration
+----------------Identifier: a
+----------------FunctionBody

@@ -1,0 +1,7 @@
+Program
+----IfStatement
+--------Test
+------------Identifier: morning
+--------Consequent
+------------Identifier: goodMorning
+------------Arguments
