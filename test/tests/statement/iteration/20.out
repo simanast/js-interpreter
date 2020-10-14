@@ -1,7 +1,10 @@
 Program
 ----ForInStatement:
 --------Left
-------------Identifier: a
+------------MemberDotExpression
+----------------Object
+--------------------Identifier: a
+----------------Property
 --------Right
 ------------Identifier: a
 --------Body

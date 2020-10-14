@@ -1,7 +1,7 @@
 import sys
 from antlr4 import *
-from .JavaScriptLexer import JavaScriptLexer
-from .AstVisitor import *
+from JavaScriptLexer import JavaScriptLexer
+from AstVisitor import *
 
 def main(argv):
     input_stream = FileStream(argv[1])

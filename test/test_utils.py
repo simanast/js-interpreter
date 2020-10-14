@@ -1,6 +1,7 @@
 from antlr4 import *
 from src.JavaScriptLexer import JavaScriptLexer
 from src.AstVisitor import *
+import os
 
 
 def getTree(path: str):
@@ -31,3 +32,13 @@ def isOutFile(filename: str):
 def getJsFileName(out_file: str):
     string = out_file[:-4] + ".js"
     return string
+
+
+def getFilenames(path: str):
+    path = os.path.join(os.getcwd(), path)
+    filenames = []
+    for file in os.listdir(path):
+        if isOutFile(file):
+            filenames.append(file[:-4])
+    return filenames
+

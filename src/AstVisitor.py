@@ -12,9 +12,12 @@ class AstVisitor(JavaScriptParserVisitor):
         self.nest_level = 0
         self.tree = ""
 
+    def addNode(self, node: str):
+        self.tree += node
+
     def printNewLine(self):
         string = '\n' + '-' * int(self.nest_level) * 4
-        self.tree += string
+        self.addNode(string)
 
     def visitChild(self, child, child_name=None):
         if child_name is None:
@@ -22,7 +25,7 @@ class AstVisitor(JavaScriptParserVisitor):
             return
 
         self.printNewLine()
-        self.tree += child_name
+        self.addNode(child_name)
         self.nest_level += 1
         child.accept(self)
         self.nest_level -= 1
@@ -30,7 +33,7 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#program.
     def visitProgram(self, ctx:JavaScriptParser.ProgramContext):
-        self.tree += 'Program'
+        self.addNode('Program')
         self.nest_level += 1
         result = self.visitChildren(ctx)
         self.nest_level -= 1
@@ -51,7 +54,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#block.
     def visitBlock(self, ctx:JavaScriptParser.BlockContext):
         self.printNewLine()
-        self.tree += 'Block'
+        self.addNode('Block')
         self.nest_level += 1
         result = self.visitChildren(ctx)
         self.nest_level -= 1
@@ -125,7 +128,7 @@ class AstVisitor(JavaScriptParserVisitor):
     def visitVariableDeclarationList(self, ctx:JavaScriptParser.VariableDeclarationListContext):
         self.printNewLine()
         self.nest_level += 1
-        self.tree += 'VariableDeclarationList'
+        self.addNode('VariableDeclarationList')
         result = self.visitChildren(ctx)
         self.nest_level -= 1
         return result
@@ -135,7 +138,7 @@ class AstVisitor(JavaScriptParserVisitor):
     def visitVariableDeclaration(self, ctx:JavaScriptParser.VariableDeclarationContext):
         self.printNewLine()
         self.nest_level += 1
-        self.tree += 'VariableDeclaration'
+        self.addNode('VariableDeclaration')
         result = self.visitChildren(ctx)
         self.nest_level -= 1
         return result
@@ -144,7 +147,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#emptyStatement.
     def visitEmptyStatement(self, ctx:JavaScriptParser.EmptyStatementContext):
         self.printNewLine()
-        self.tree += 'EmptyStatement'
+        self.addNode('EmptyStatement')
         return None
 
     # Visit a parse tree produced by JavaScriptParser#expressionStatement.
@@ -155,7 +158,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#ifStatement.
     def visitIfStatement(self, ctx:JavaScriptParser.IfStatementContext):
         self.printNewLine()
-        self.tree += 'IfStatement'
+        self.addNode('IfStatement')
         self.nest_level += 1
 
         test = ctx.expressionSequence()
@@ -175,7 +178,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#DoStatement.
     def visitDoStatement(self, ctx:JavaScriptParser.DoStatementContext):
         self.printNewLine()
-        self.tree += 'DoStatement'
+        self.addNode('DoStatement')
         self.nest_level += 1
 
         body = ctx.statement()
@@ -191,7 +194,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#WhileStatement.
     def visitWhileStatement(self, ctx:JavaScriptParser.WhileStatementContext):
         self.printNewLine()
-        self.tree += 'WhileStatement'
+        self.addNode('WhileStatement')
         self.nest_level += 1
 
         test = ctx.expressionSequence()
@@ -207,7 +210,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#ForStatement.
     def visitForStatement(self, ctx:JavaScriptParser.ForStatementContext):
         self.printNewLine()
-        self.tree += 'ForStatement'
+        self.addNode('ForStatement')
         self.nest_level += 1
 
         i = 0
@@ -233,7 +236,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#ForInStatement.
     def visitForInStatement(self, ctx:JavaScriptParser.ForInStatementContext):
         self.printNewLine()
-        self.tree += 'ForInStatement:'
+        self.addNode('ForInStatement:')
         self.nest_level += 1
 
         if not (left := ctx.variableDeclarationList()):
@@ -253,7 +256,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#ForOfStatement.
     def visitForOfStatement(self, ctx:JavaScriptParser.ForOfStatementContext):
         self.printNewLine()
-        self.tree += 'ForOfStatement'
+        self.addNode('ForOfStatement')
         self.nest_level += 1
 
         if not (left := ctx.variableDeclarationList()):
@@ -272,7 +275,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#varModifier.
     def visitVarModifier(self, ctx:JavaScriptParser.VarModifierContext):
         self.printNewLine()
-        self.tree += 'VarModifier: '
+        self.addNode('VarModifier: ')
         var_modifier = None
         if ctx.Var():
             var_modifier = 'var'
@@ -280,14 +283,14 @@ class AstVisitor(JavaScriptParserVisitor):
             var_modifier = 'const'
         elif ctx.let():
             var_modifier = 'let'
-        self.tree += var_modifier
+        self.addNode(var_modifier)
         return None
 
 
     # Visit a parse tree produced by JavaScriptParser#continueStatement.
     def visitContinueStatement(self, ctx:JavaScriptParser.ContinueStatementContext):
         self.printNewLine()
-        self.tree += 'ContinueStatement'
+        self.addNode('ContinueStatement')
         if ctx.identifier():
             self.nest_level += 1
             ctx.identifier().accept(self)
@@ -298,7 +301,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#breakStatement.
     def visitBreakStatement(self, ctx:JavaScriptParser.BreakStatementContext):
         self.printNewLine()
-        self.tree += 'BreakStatement'
+        self.addNode('BreakStatement')
         if ctx.identifier():
             self.nest_level += 1
             ctx.identifier().accept(self)
@@ -309,7 +312,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#returnStatement.
     def visitReturnStatement(self, ctx:JavaScriptParser.ReturnStatementContext):
         self.printNewLine()
-        self.tree += 'ReturnStatement'
+        self.addNode('ReturnStatement')
         self.nest_level += 1
         if ctx.expressionSequence():
             self.visitChildren(ctx)
@@ -385,7 +388,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#functionDeclaration.
     def visitFunctionDeclaration(self, ctx:JavaScriptParser.FunctionDeclarationContext):
         self.printNewLine()
-        self.tree += 'FunctionDeclaration'
+        self.addNode('FunctionDeclaration')
         self.nest_level += 1
         result = self.visitChildren(ctx)
         self.nest_level -= 1
@@ -395,28 +398,36 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#classDeclaration.
     def visitClassDeclaration(self, ctx:JavaScriptParser.ClassDeclarationContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode("ClassDeclaration: not implemented")
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#classTail.
     def visitClassTail(self, ctx:JavaScriptParser.ClassTailContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode("ClassTail: not implemented")
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#classElement.
     def visitClassElement(self, ctx:JavaScriptParser.ClassElementContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode("ClassElement: not implemented")
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#methodDefinition.
     def visitMethodDefinition(self, ctx:JavaScriptParser.MethodDefinitionContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode("ClassDeclaration: not implemented")
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#formalParameterList.
     def visitFormalParameterList(self, ctx:JavaScriptParser.FormalParameterListContext):
         self.printNewLine()
-        self.tree += 'ParameterList'
+        self.addNode('ParameterList')
         self.nest_level += 1
         result = self.visitChildren(ctx)
         self.nest_level -= 1
@@ -426,19 +437,21 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#formalParameterArg.
     def visitFormalParameterArg(self, ctx:JavaScriptParser.FormalParameterArgContext):
         self.printNewLine()
-        self.tree += 'FormalParameterArg'
+        self.addNode('FormalParameterArg')
         self.nest_level += 1
         self.visitChildren(ctx)
         self.nest_level -= 1
 
     # Visit a parse tree produced by JavaScriptParser#lastFormalParameterArg.
     def visitLastFormalParameterArg(self, ctx:JavaScriptParser.LastFormalParameterArgContext):
+        self.printNewLine()
+        self.addNode("LastFormalParameterArg: not implemented")
         return None
 
     # Visit a parse tree produced by JavaScriptParser#functionBody.
     def visitFunctionBody(self, ctx:JavaScriptParser.FunctionBodyContext):
         self.printNewLine()
-        self.tree += 'FunctionBody'
+        self.addNode('FunctionBody')
         self.nest_level += 1
         result = self.visitChildren(ctx)
         self.nest_level -= 1
@@ -453,7 +466,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#arrayLiteral.
     def visitArrayLiteral(self, ctx:JavaScriptParser.ArrayLiteralContext):
         self.printNewLine()
-        self.tree += 'ArrayLiteral'
+        self.addNode('ArrayLiteral')
         self.nest_level += 1
         self.visitChildren(ctx)
         self.nest_level -= 1
@@ -473,7 +486,7 @@ class AstVisitor(JavaScriptParserVisitor):
     def visitPropertyExpressionAssignment(self, ctx:JavaScriptParser.PropertyExpressionAssignmentContext):
         # isn't it PropertyAssignmentExpression ?
         self.printNewLine()
-        self.tree += 'PropertyAssignment'
+        self.addNode('PropertyAssignment')
         self.nest_level += 1
         self.visitChildren(ctx)
         self.nest_level -= 1
@@ -482,7 +495,9 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#ComputedPropertyExpressionAssignment.
     def visitComputedPropertyExpressionAssignment(self, ctx:JavaScriptParser.ComputedPropertyExpressionAssignmentContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode("ComputedPropertyExpressionAssignment: not implemented")
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#FunctionProperty.
@@ -493,7 +508,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#PropertyGetter.
     def visitPropertyGetter(self, ctx:JavaScriptParser.PropertyGetterContext):
         self.printNewLine()
-        self.tree += 'PropertyGetter'
+        self.addNode('PropertyGetter')
         self.nest_level += 1
         self.visitChildren(ctx)
         self.nest_level -= 1
@@ -502,7 +517,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#PropertySetter.
     def visitPropertySetter(self, ctx:JavaScriptParser.PropertySetterContext):
         self.printNewLine()
-        self.tree += 'PropertySetter'
+        self.addNode('PropertySetter')
         self.nest_level += 1
         self.visitChildren(ctx)
         self.nest_level -= 1
@@ -511,13 +526,14 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#PropertyShorthand.
     def visitPropertyShorthand(self, ctx:JavaScriptParser.PropertyShorthandContext):
-        return self.visitChildren(ctx)
-
+        self.printNewLine()
+        self.addNode('PropertyShorthand: not implemented')
+        return None
 
     # Visit a parse tree produced by JavaScriptParser#propertyName.
     def visitPropertyName(self, ctx:JavaScriptParser.PropertyNameContext):
         self.printNewLine()
-        self.tree += 'PropertyName'
+        self.addNode('PropertyName')
         self.nest_level += 1
 
         if ctx.singleExpression() or ctx.identifierName():
@@ -525,9 +541,9 @@ class AstVisitor(JavaScriptParserVisitor):
         else:
             self.printNewLine()
             if ctx.StringLiteral():
-                self.tree += ctx.StringLiteral().getText()
+                self.addNode(ctx.StringLiteral().getText())
             elif ctx.numericLiteral():
-                self.tree += ctx.numericLiteral().getText()
+                self.addNode(ctx.numericLiteral().getText())
 
         self.nest_level -= 1
         return None
@@ -535,7 +551,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#arguments.
     def visitArguments(self, ctx:JavaScriptParser.ArgumentsContext):
         self.printNewLine()
-        self.tree += 'Arguments'
+        self.addNode('Arguments')
         self.nest_level += 1
         self.visitChildren(ctx)
         self.nest_level -= 1
@@ -554,13 +570,15 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#TemplateStringExpression.
     def visitTemplateStringExpression(self, ctx:JavaScriptParser.TemplateStringExpressionContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode('TemplateStringExpression: not implemented')
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#TernaryExpression.
     def visitTernaryExpression(self, ctx:JavaScriptParser.TernaryExpressionContext):
         self.printNewLine()
-        self.tree += 'TernaryExpression'
+        self.addNode('TernaryExpression')
         self.nest_level += 1
 
         test = ctx.singleExpression(0)
@@ -578,11 +596,11 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#LogicalAndExpression.
     def visitLogicalAndExpression(self, ctx:JavaScriptParser.LogicalAndExpressionContext):
         self.printNewLine()
-        self.tree += 'LogicalAndExpression'
+        self.addNode('LogicalAndExpression')
         self.nest_level += 1
 
         self.printNewLine()
-        self.tree += 'Operator: &&'
+        self.addNode('Operator: &&')
 
         lhs = ctx.singleExpression(0)
         self.visitChild(lhs, 'Lhs')
@@ -597,11 +615,11 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#PowerExpression.
     def visitPowerExpression(self, ctx:JavaScriptParser.PowerExpressionContext):
         self.printNewLine()
-        self.tree += 'PowerExpression'
+        self.addNode('PowerExpression')
         self.nest_level += 1
 
         self.printNewLine()
-        self.tree += 'Operator: **'
+        self.addNode('Operator: **')
 
         lhs = ctx.singleExpression(0)
         self.visitChild(lhs, 'Lhs')
@@ -615,11 +633,11 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#PreIncrementExpression.
     def visitPreIncrementExpression(self, ctx:JavaScriptParser.PreIncrementExpressionContext):
         self.printNewLine()
-        self.tree += 'PreIncrementExpression'
+        self.addNode('PreIncrementExpression')
         self.nest_level += 1
 
         self.printNewLine()
-        self.tree += 'Operator: ++'
+        self.addNode('Operator: ++')
         self.visitChild(ctx.singleExpression())
 
         self.nest_level -= 1
@@ -628,7 +646,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#ObjectLiteralExpression.
     def visitObjectLiteralExpression(self, ctx:JavaScriptParser.ObjectLiteralExpressionContext):
         self.printNewLine()
-        self.tree += 'ObjectLiteral'
+        self.addNode('ObjectLiteral')
         self.nest_level += 1
         self.visitChildren(ctx)
         self.nest_level -= 1
@@ -637,17 +655,18 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#MetaExpression.
     def visitMetaExpression(self, ctx:JavaScriptParser.MetaExpressionContext):
-        return self.visitChildren(ctx)
-
+        self.printNewLine()
+        self.addNode('MetaExpression: not implemented')
+        return None
 
     # Visit a parse tree produced by JavaScriptParser#InExpression.
     def visitInExpression(self, ctx:JavaScriptParser.InExpressionContext):
         self.printNewLine()
-        self.tree += 'InExpression'
+        self.addNode('InExpression')
         self.nest_level += 1
 
         self.printNewLine()
-        self.tree += 'Operator: in'
+        self.addNode('Operator: in')
 
         lhs = ctx.singleExpression(0)
         self.visitChild(lhs, 'Lhs')
@@ -663,10 +682,10 @@ class AstVisitor(JavaScriptParserVisitor):
     def visitLogicalOrExpression(self, ctx:JavaScriptParser.LogicalOrExpressionContext):
         self.printNewLine()
         self.nest_level += 1
-        self.tree += 'LogicalOrExpression'
+        self.addNode('LogicalOrExpression')
 
         self.printNewLine()
-        self.tree += 'Operator: ||'
+        self.addNode('Operator: ||')
 
         lhs = ctx.singleExpression(0)
         self.visitChild(lhs, 'Lhs')
@@ -681,11 +700,11 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#NotExpression.
     def visitNotExpression(self, ctx:JavaScriptParser.NotExpressionContext):
         self.printNewLine()
-        self.tree += 'NotExpression'
+        self.addNode('NotExpression')
 
         self.nest_level += 1
         self.printNewLine()
-        self.tree += 'Operator: !'
+        self.addNode('Operator: !')
         self.visitChild(ctx.singleExpression())
         self.nest_level -= 1
         return None
@@ -693,11 +712,11 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#PreDecreaseExpression.
     def visitPreDecreaseExpression(self, ctx:JavaScriptParser.PreDecreaseExpressionContext):
         self.printNewLine()
-        self.tree += 'PreDecreaseExpression'
+        self.addNode('PreDecreaseExpression')
 
         self.nest_level += 1
         self.printNewLine()
-        self.tree += 'Operator: --'
+        self.addNode('Operator: --')
         self.visitChild(ctx.singleExpression())
         self.nest_level -= 1
         return None
@@ -710,13 +729,15 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#AwaitExpression.
     def visitAwaitExpression(self, ctx:JavaScriptParser.AwaitExpressionContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode('AwaitExpression: not implemented')
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#ThisExpression.
     def visitThisExpression(self, ctx:JavaScriptParser.ThisExpressionContext):
         self.printNewLine()
-        self.tree += 'ThisExpression'
+        self.addNode('ThisExpression')
         self.nest_level += 1
         self.visitChildren(ctx)
         self.nest_level -= 1
@@ -726,14 +747,13 @@ class AstVisitor(JavaScriptParserVisitor):
     def visitFunctionExpression(self, ctx:JavaScriptParser.FunctionExpressionContext):
         return self.visitChildren(ctx)
 
-
     # Visit a parse tree produced by JavaScriptParser#UnaryMinusExpression.
     def visitUnaryMinusExpression(self, ctx:JavaScriptParser.UnaryMinusExpressionContext):
         self.printNewLine()
-        self.tree += 'UnaryMinusExpression'
+        self.addNode('UnaryMinusExpression')
         self.nest_level += 1
         self.printNewLine()
-        self.tree += 'Operator: -'
+        self.addNode('Operator: -')
         self.visitChild(ctx.singleExpression())
         self.nest_level -= 1
         return None
@@ -742,11 +762,11 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#AssignmentExpression.
     def visitAssignmentExpression(self, ctx:JavaScriptParser.AssignmentExpressionContext):
         self.printNewLine()
-        self.tree += 'AssignmentExpression'
+        self.addNode('AssignmentExpression')
         self.nest_level += 1
 
         self.printNewLine()
-        self.tree += 'Operator: ='
+        self.addNode('Operator: =')
 
         lhs = ctx.singleExpression(0)
         self.visitChild(lhs, 'Lhs')
@@ -757,15 +777,13 @@ class AstVisitor(JavaScriptParserVisitor):
         self.nest_level -= 1
         return None
 
-
-
     # Visit a parse tree produced by JavaScriptParser#PostDecreaseExpression.
     def visitPostDecreaseExpression(self, ctx:JavaScriptParser.PostDecreaseExpressionContext):
         self.printNewLine()
-        self.tree += 'PostDecreaseExpression'
+        self.addNode('PostDecreaseExpression')
         self.nest_level += 1
         self.printNewLine()
-        self.tree += 'Operator: --'
+        self.addNode('Operator: --')
         self.visitChild(ctx.singleExpression())
         self.nest_level -= 1
         return None
@@ -777,16 +795,18 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#InstanceofExpression.
     def visitInstanceofExpression(self, ctx:JavaScriptParser.InstanceofExpressionContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode('InstanceOf: not implemented')
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#UnaryPlusExpression.
     def visitUnaryPlusExpression(self, ctx:JavaScriptParser.UnaryPlusExpressionContext):
         self.printNewLine()
-        self.tree += 'UnaryPlusExpression'
+        self.addNode('UnaryPlusExpression')
         self.nest_level += 1
         self.printNewLine()
-        self.tree += 'Operator: +'
+        self.addNode('Operator: +')
         self.visitChild(ctx.singleExpression())
         self.nest_level -= 1
         return None
@@ -794,31 +814,35 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#DeleteExpression.
     def visitDeleteExpression(self, ctx:JavaScriptParser.DeleteExpressionContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode('DeleteExpression: not implemented')
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#ImportExpression.
     def visitImportExpression(self, ctx:JavaScriptParser.ImportExpressionContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode('ImportExpression: not implemented')
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#EqualityExpression.
     def visitEqualityExpression(self, ctx:JavaScriptParser.EqualityExpressionContext):
         self.printNewLine()
         self.nest_level += 1
-        self.tree += 'EqualityExpression'
+        self.addNode('EqualityExpression')
 
         self.printNewLine()
-        self.tree += 'Operator: '
+        self.addNode('Operator: ')
 
         if ctx.Equals_():
-            self.tree += '=='
+            self.addNode('==')
         elif ctx.IdentityEquals():
-            self.tree += '==='
+            self.addNode('===')
         elif ctx.NotEquals():
-            self.tree += '!='
+            self.addNode('!=')
         elif ctx.IdentityNotEquals():
-            self.tree += '!=='
+            self.addNode('!==')
 
         lhs = ctx.singleExpression(0)
         self.visitChild(lhs, 'Lhs')
@@ -834,10 +858,10 @@ class AstVisitor(JavaScriptParserVisitor):
     def visitBitXOrExpression(self, ctx:JavaScriptParser.BitXOrExpressionContext):
         self.printNewLine()
         self.nest_level += 1
-        self.tree += 'BitXorExpression'
+        self.addNode('BitXorExpression')
 
         self.printNewLine()
-        self.tree += 'Operator: ^'
+        self.addNode('Operator: ^')
         lhs = ctx.singleExpression(0)
         self.visitChild(lhs, 'Lhs')
 
@@ -850,24 +874,26 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#SuperExpression.
     def visitSuperExpression(self, ctx:JavaScriptParser.SuperExpressionContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode('SuperExpression: not implemented')
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#MultiplicativeExpression.
     def visitMultiplicativeExpression(self, ctx:JavaScriptParser.MultiplicativeExpressionContext):
         self.printNewLine()
         self.nest_level += 1
-        self.tree += 'MultiplicativeExpression'
+        self.addNode('MultiplicativeExpression')
 
         self.printNewLine()
-        self.tree += 'Operator: '
+        self.addNode('Operator: ')
 
         if ctx.Divide():
-            self.tree += '/'
+            self.addNode('/')
         elif ctx.Multiply():
-            self.tree += '*'
+            self.addNode('*')
         elif ctx.Modulus():
-            self.tree += '%'
+            self.addNode('%')
 
         lhs = ctx.singleExpression(0)
         self.visitChild(lhs, 'Lhs')
@@ -883,17 +909,17 @@ class AstVisitor(JavaScriptParserVisitor):
     def visitBitShiftExpression(self, ctx:JavaScriptParser.BitShiftExpressionContext):
         self.printNewLine()
         self.nest_level += 1
-        self.tree += 'BitShiftExpression'
+        self.addNode('BitShiftExpression')
 
         self.printNewLine()
-        self.tree += 'Operator: '
+        self.addNode('Operator: ')
 
         if ctx.LeftShiftArithmetic():
-            self.tree += '<<'
+            self.addNode('<<')
         elif ctx.RightShiftArithmetic():
-            self.tree += '>>'
+            self.addNode('>>')
         elif ctx.RightShiftLogical():
-            self.tree += '>>>'
+            self.addNode('>>>')
 
         lhs = ctx.singleExpression(0)
         self.visitChild(lhs, 'Lhs')
@@ -914,14 +940,14 @@ class AstVisitor(JavaScriptParserVisitor):
     def visitAdditiveExpression(self, ctx:JavaScriptParser.AdditiveExpressionContext):
         self.printNewLine()
         self.nest_level += 1
-        self.tree += 'AdditiveExpression'
+        self.addNode('AdditiveExpression')
 
         self.printNewLine()
-        self.tree += 'Operator: '
+        self.addNode('Operator: ')
         if ctx.Minus():
-            self.tree += '-'
+            self.addNode('-')
         elif ctx.Plus():
-            self.tree += '+'
+            self.addNode('+')
 
         lhs = ctx.singleExpression(0)
         self.visitChild(lhs, 'Lhs')
@@ -935,20 +961,20 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#RelationalExpression.
     def visitRelationalExpression(self, ctx:JavaScriptParser.RelationalExpressionContext):
         self.printNewLine()
-        self.tree += 'RelationalExpression'
+        self.addNode('RelationalExpression')
         self.nest_level += 1
 
         self.printNewLine()
-        self.tree += 'Operator: '
+        self.addNode('Operator: ')
 
         if ctx.GreaterThanEquals():
-            self.tree += '>='
+            self.addNode('>=')
         elif ctx.LessThan():
-            self.tree += '<'
+            self.addNode('<')
         elif ctx.LessThanEquals():
-            self.tree += '<='
+            self.addNode('<=')
         elif ctx.MoreThan():
-            self.tree += '>'
+            self.addNode('>')
         lhs = ctx.singleExpression(0)
         self.visitChild(lhs, 'Lhs')
 
@@ -961,10 +987,10 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#PostIncrementExpression.
     def visitPostIncrementExpression(self, ctx:JavaScriptParser.PostIncrementExpressionContext):
         self.printNewLine()
-        self.tree += 'PostIncrementExpression'
+        self.addNode('PostIncrementExpression')
         self.nest_level += 1
         self.printNewLine()
-        self.tree += 'Operator: ++'
+        self.addNode('Operator: ++')
         self.visitChild(ctx.singleExpression())
         self.nest_level -= 1
         return None
@@ -972,16 +998,18 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#YieldExpression.
     def visitYieldExpression(self, ctx:JavaScriptParser.YieldExpressionContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode('YieldExpression: not implemented')
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#BitNotExpression.
     def visitBitNotExpression(self, ctx:JavaScriptParser.BitNotExpressionContext):
         self.printNewLine()
-        self.tree += 'BitNotExpression'
+        self.addNode('BitNotExpression')
         self.nest_level += 1
         self.printNewLine()
-        self.tree += 'Operator: ~'
+        self.addNode('Operator: ~')
         self.visitChild(ctx.singleExpression())
         self.nest_level -= 1
         return None
@@ -989,14 +1017,15 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#NewExpression.
     def visitNewExpression(self, ctx:JavaScriptParser.NewExpressionContext):
-
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode('NewExpression: not implemented')
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#LiteralExpression.
     def visitLiteralExpression(self, ctx:JavaScriptParser.LiteralExpressionContext):
         self.printNewLine()
-        self.tree += 'LiteralExpression'
+        self.addNode('LiteralExpression')
         self.nest_level += 1
         result = self.visitChildren(ctx)
         self.nest_level -= 1
@@ -1010,17 +1039,33 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#MemberDotExpression.
     def visitMemberDotExpression(self, ctx:JavaScriptParser.MemberDotExpressionContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode('MemberDotExpression')
+
+        self.nest_level += 1
+        self.visitChild(ctx.singleExpression(), 'Object')
+        self.visitChild(ctx.identifierName(), 'Property')
+        self.nest_level -= 1
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#ClassExpression.
     def visitClassExpression(self, ctx:JavaScriptParser.ClassExpressionContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode('ClassExpression: not implemented')
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#MemberIndexExpression.
     def visitMemberIndexExpression(self, ctx:JavaScriptParser.MemberIndexExpressionContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode('MemberIndexExpression')
+
+        self.nest_level += 1
+        self.visitChild(ctx.singleExpression(), 'Object')
+        self.visitChild(ctx.expressionSequence(), 'Property')
+        self.nest_level -= 1
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#IdentifierExpression.
@@ -1032,10 +1077,10 @@ class AstVisitor(JavaScriptParserVisitor):
     def visitBitAndExpression(self, ctx:JavaScriptParser.BitAndExpressionContext):
         self.printNewLine()
         self.nest_level += 1
-        self.tree += 'BitAndExpression'
+        self.addNode('BitAndExpression')
 
         self.printNewLine()
-        self.tree += 'Operator: &'
+        self.addNode('Operator: &')
         lhs = ctx.singleExpression(0)
         self.visitChild(lhs, 'Lhs')
 
@@ -1049,10 +1094,10 @@ class AstVisitor(JavaScriptParserVisitor):
     def visitBitOrExpression(self, ctx:JavaScriptParser.BitOrExpressionContext):
         self.printNewLine()
         self.nest_level += 1
-        self.tree += 'BitOrExpression'
+        self.addNode('BitOrExpression')
 
         self.printNewLine()
-        self.tree += 'Operator: |'
+        self.addNode('Operator: |')
         lhs = ctx.singleExpression(0)
         self.visitChild(lhs, 'Lhs')
 
@@ -1066,7 +1111,7 @@ class AstVisitor(JavaScriptParserVisitor):
     def visitAssignmentOperatorExpression(self, ctx:JavaScriptParser.AssignmentOperatorExpressionContext):
         self.printNewLine()
         self.nest_level += 1
-        self.tree += 'AssignmentOperatorExpression'
+        self.addNode('AssignmentOperatorExpression')
 
         operator = ctx.assignmentOperator()
         self.visitChild(operator, 'AssignmentOperator')
@@ -1083,13 +1128,16 @@ class AstVisitor(JavaScriptParserVisitor):
 
     # Visit a parse tree produced by JavaScriptParser#VoidExpression.
     def visitVoidExpression(self, ctx:JavaScriptParser.VoidExpressionContext):
-        return self.visitChildren(ctx)
+        self.printNewLine()
+        self.addNode('VoidExpression: not implemented')
+        return None
 
 
     # Visit a parse tree produced by JavaScriptParser#CoalesceExpression.
     def visitCoalesceExpression(self, ctx:JavaScriptParser.CoalesceExpressionContext):
-        return self.visitChildren(ctx)
-
+        self.printNewLine()
+        self.addNode('CoalesceExpression: not implemented')
+        return None
 
     # Visit a parse tree produced by JavaScriptParser#assignable.
     def visitAssignable(self, ctx:JavaScriptParser.AssignableContext):
@@ -1109,7 +1157,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#AnoymousFunctionDecl.
     def visitAnoymousFunctionDecl(self, ctx:JavaScriptParser.AnoymousFunctionDeclContext):
         self.printNewLine()
-        self.tree += 'AnoymousFunctionDecl'
+        self.addNode('AnoymousFunctionDecl')
         self.nest_level += 1
         self.visitChildren(ctx)
         self.nest_level -= 1
@@ -1118,7 +1166,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#ArrowFunction.
     def visitArrowFunction(self, ctx:JavaScriptParser.ArrowFunctionContext):
         self.printNewLine()
-        self.tree += 'ArrowFunction'
+        self.addNode('ArrowFunction')
         self.nest_level += 1
         result = self.visitChildren(ctx)
         self.nest_level -= 1
@@ -1166,7 +1214,7 @@ class AstVisitor(JavaScriptParserVisitor):
         if ctx.PowerAssign():
             string = f'PowerAssign: {ctx.PowerAssign()}'
 
-        self.tree += string
+        self.addNode(string)
         self.nest_level -= 1
         return None
 
@@ -1180,7 +1228,7 @@ class AstVisitor(JavaScriptParserVisitor):
         self.nest_level += 1
 
         string = ctx.getChild(0).getText()
-        self.tree += string
+        self.addNode(string)
         self.nest_level -= 1
         return None
 
@@ -1188,7 +1236,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#numericLiteral.
     def visitNumericLiteral(self, ctx:JavaScriptParser.NumericLiteralContext):
         self.printNewLine()
-        self.tree += ctx.getChild(0).getText()
+        self.addNode(ctx.getChild(0).getText())
         return None
 
 
@@ -1196,11 +1244,10 @@ class AstVisitor(JavaScriptParserVisitor):
     def visitBigintLiteral(self, ctx:JavaScriptParser.BigintLiteralContext):
         return self.visitChildren(ctx)
 
-
     # Visit a parse tree produced by JavaScriptParser#getter.
     def visitGetter(self, ctx:JavaScriptParser.GetterContext):
         self.printNewLine()
-        self.tree += 'Getter'
+        self.addNode('Getter')
         self.nest_level += 1
         self.visitChildren(ctx)
         self.nest_level -= 1
@@ -1210,7 +1257,7 @@ class AstVisitor(JavaScriptParserVisitor):
     # Visit a parse tree produced by JavaScriptParser#setter.
     def visitSetter(self, ctx:JavaScriptParser.SetterContext):
         self.printNewLine()
-        self.tree += 'Setter'
+        self.addNode('Setter')
         self.nest_level += 1
         self.visitChildren(ctx)
         self.nest_level -= 1
@@ -1226,7 +1273,7 @@ class AstVisitor(JavaScriptParserVisitor):
     def visitIdentifier(self, ctx:JavaScriptParser.IdentifierContext):
         self.printNewLine()
         self.nest_level += 1
-        self.tree += f'Identifier: {ctx.Identifier()}'
+        self.addNode(f'Identifier: {ctx.Identifier()}')
         result = self.visitChildren(ctx)
         self.nest_level -= 1
         return result

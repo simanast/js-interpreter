@@ -1,15 +1,5 @@
 import unittest
-import os
 from .test_utils import *
-
-
-def getFilenames(path: str):
-    path = os.path.join(os.getcwd(), path)
-    filenames = []
-    for file in os.listdir(path):
-        if isOutFile(file):
-            filenames.append(file[:-4])
-    return filenames
 
 
 def runTest(path_to_folder: str):
