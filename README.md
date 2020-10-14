@@ -1,5 +1,7 @@
 ## Интерпретатор JavaScript
 
+- Установить antlr4 и сгенерировать лексер и парсер [по инструкции](https://github.com/antlr/antlr4/blob/master/doc/getting-started.md)
+
 - Установить библиотеку antlr4-runtime
 ```
 pip install antlr4-python3-runtime
